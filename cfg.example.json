@@ -8,7 +8,7 @@
 	"switch":{
 	   "enabled": true,
 		"ipRange":[
-            "10.10.88.168"      
+            "10.10.88.168"
  		],
 		"gosnmp":true,
  		"pingTimeout":300,
@@ -36,14 +36,15 @@
 		"fastPingMode": true,
 		"limitConcur": 1000,
 		"limitCon": 4
- 	}, 
+ 	},
 	"switchhosts":{
-		"enabled":false,
-		"hosts":"./hosts.json"
+		"enabled":true,
+    "replaceSwitchIpRange":true,
+		"hosts":"./hosts.example.json"
 	},
 	"customMetrics":{
-		"enabled":false,
-		"template":"./custom.json"
+		"enabled":true,
+		"template":"./custom.example.json"
 	},
     "transfer": {
         "enabled": true,

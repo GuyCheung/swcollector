@@ -62,8 +62,9 @@ type HttpConfig struct {
 }
 
 type SwitchHostsConfig struct {
-	Enabled bool   `json:enabled`
-	Hosts   string `json:hosts`
+	Enabled              bool   `json:enabled`
+	ReplaceSwitchIpRange bool   `json:"replaceSwitchIPRange"`
+	Hosts                string `json:hosts`
 }
 
 type CustomMetricsConfig struct {

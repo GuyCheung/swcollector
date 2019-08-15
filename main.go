@@ -27,6 +27,10 @@ func main() {
 	if g.Config().SwitchHosts.Enabled {
 		hostcfg := g.Config().SwitchHosts.Hosts
 		g.ParseHostConfig(hostcfg)
+		if g.Config().SwitchHosts.ReplaceSwitchIpRange {
+			// replace global switch host iprange
+			g.Config().Switch.IpRange = g.HostConfig().GetIPList()
+		}
 	}
 	if g.Config().CustomMetrics.Enabled {
 		custMetrics := g.Config().CustomMetrics.Template

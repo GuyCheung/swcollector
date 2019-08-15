@@ -10,11 +10,12 @@ import (
 )
 
 type MetricConfig struct {
-	IpRange []string `json:"ipRange"`
-	Metric  string   `json:metric`
-	Tag     string   `json:tag`
-	Type    string   `json:type`
-	Oid     string   `json:oid`
+	IpRange          []string `json:"ipRange"`
+	UseSwitchIpRange bool     `json:"useSwitchIPRange"`
+	Metric           string   `json:metric`
+	Tag              string   `json:tag`
+	Type             string   `json:type`
+	Oid              string   `json:oid`
 }
 type CustomConfig struct {
 	Metrics []*MetricConfig `json:"metrics`
@@ -50,6 +51,14 @@ func ParseCustConfig(cfg string) {
 	custlock.Lock()
 	defer custlock.Unlock()
 	custconfig = &c
+
+	for i, m := range custconfig.Metrics {
+		if !m.UseSwitchIpRange {
+			continue
+		}
+
+		custconfig.Metrics[i].IpRange = HostConfig().GetIPList()
+	}
 
 	log.Println("read customconfig file:", cfg, "successfully")
 

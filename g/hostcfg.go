@@ -13,6 +13,14 @@ type HostsConfig struct {
 	Hosts map[string]string `json:"hosts"`
 }
 
+func (hc *HostsConfig) GetIPList() []string {
+	var l []string
+	for k := range hc.Hosts {
+		l = append(l, k)
+	}
+	return l
+}
+
 var (
 	HostConfigFile string
 	hostconfig     *HostsConfig
